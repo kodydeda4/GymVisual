@@ -25,7 +25,7 @@ public enum Equipment: String {
   case vibratePlate    = "Vibrate Plate"
   case battlingRope    = "Battling Rope"
   case rollball        = "Rollball"
-  case Stick           = "Stick"
+  case stick           = "Stick"
 }
 
 extension Equipment: Codable {}
