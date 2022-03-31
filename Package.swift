@@ -1,28 +1,34 @@
 // swift-tools-version: 5.6
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
-    name: "GymVisual",
-    products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "GymVisual",
-            targets: ["GymVisual"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "GymVisual",
-            dependencies: []),
-        .testTarget(
-            name: "GymVisualTests",
-            dependencies: ["GymVisual"]),
-    ]
-)
+  name: "GymVisual",
+  platforms: [.macOS(.v12), .iOS(.v15), .watchOS(.v8)],
+  products: [],
+  dependencies: [],
+  targets: []
+).addSources([
+  Source(name: "GymVisual"),
+])
+
+
+// MARK: - Helpers
+struct Source {
+  let name: String
+  var dependencies: [Target.Dependency] = []
+}
+
+extension Package {
+  func addSources(_ sources: [Source]) -> Package {
+    self.products += sources.map { .library(name: $0.name, targets: [$0.name]) }
+    self.targets += sources.map { .target(name: $0.name, dependencies: $0.dependencies) }
+    return self
+  }
+}
+
+
+// MARK: - Sources
+extension Target.Dependency {
+  static let gymVisual: Self = "GymVisual"
+}
