@@ -34,9 +34,7 @@ extension Equipment: Hashable {}
 extension Equipment: CaseIterable {}
 extension Equipment: Identifiable { public var id: String { rawValue } }
 extension Equipment: CustomStringConvertible { public var description: String { rawValue } }
-
 extension Exercise {
-static let allCases = [
 static let threeQuarterSitUpWaistFix = Exercise(
   id: 112,
   name: "3/4 Sit-up",
@@ -28516,7 +28514,6 @@ static let leverOneArmInclineChestPressPlateLoadedChest = Exercise(
   primaryMuscles: [],
   secondaryMuscles: []
 )
-]
 }
 extension Exercise: CaseIteratable {
 static let allCases = [
